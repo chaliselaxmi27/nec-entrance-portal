@@ -1,0 +1,95 @@
+<div class="topbar">
+
+    
+
+    <div class="container topbar-container">
+        <div class="topbar-left">
+            <div class="top-contact">
+                <span>📞 {% if site.phone %}{{ site.phone }}{% else %}+977-01-5221006{% endif %}</span>
+                <span>✉ {% if site.email %}{{ site.email }}{% else %}info@nec.edu.np{% endif %}</span>
+            </div>
+        </div>
+
+        <div class="topbar-right">
+            <a href="#">Admission</a>
+            <a href="#">Internationalization</a>
+            <a href="#">nec-BDH</a>
+            <a href="#">Masters</a>
+            <a href="#">nec-CPS</a>
+            <a href="#">Faculty</a>
+            <a href="#">Alumni</a>
+            <a href="#">Contact Us</a>
+            <a href="/admin/">Login</a>
+            <a href="#" class="enquiry-btn">Enquiry</a>
+            <a href="#" class="social-link">f</a>
+            <a href="#" class="social-link">in</a>
+            <a href="#" class="social-link">▶</a>
+        </div>
+    </div>
+</div>
+<div class="notice-ticker">
+    <div class="container ticker-container">
+
+        <div class="ticker-title">
+            Latest Notices
+        </div>
+
+        <div class="ticker-wrapper">
+            <div class="ticker-track">
+
+                {% for notice in latest_notices %}
+                    <span class="ticker-item">
+                        <a href="{% url 'notice_detail' notice.slug %}">
+                            {{ notice.title }}
+                        </a>
+                    </span>
+                {% endfor %}
+
+                {% for notice in latest_notices %}
+                    <span class="ticker-item">
+                        <a href="{% url 'notice_detail' notice.slug %}">
+                            {{ notice.title }}
+                        </a>
+                    </span>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<header class="main-header">
+    <div class="container header-container">
+        <div class="brand-area">
+            <a href="/" class="brand-logo">
+                {% if site.logo %}
+                    <img src="{{ site.logo.url }}" alt="{{ site.college_name }}">
+                {% else %}
+                    <div class="logo-fallback">NEC</div>
+                {% endif %}
+            </a>
+
+            <div class="brand-text">
+                <h1>
+                    <a href="/">
+                        {% if site.college_name %}
+                            {{ site.college_name }}
+                        {% else %}
+                            Nepal Engineering College
+                        {% endif %}
+                    </a>
+                </h1>
+                <p>Affiliated to Pokhara University</p>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <a href="/">Home</a>
+            <a href="/#notices">Notices</a>
+            <a href="{% url 'downloads' %}">Downloads/Other Links</a>
+            <a href="/#programs">Offered Programs</a>
+            <a href="/#program-details">Programs Details</a>
+        </nav>
+    </div>
+</header>

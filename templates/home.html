@@ -1,0 +1,326 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section
+    class="hero"
+    {% if hero_slides and hero_slides.0 and hero_slides.0.background_image %}
+        style="background:
+        linear-gradient(rgba(8, 31, 78, 0.70), rgba(8, 31, 78, 0.78)),
+        url('{{ hero_slides.0.background_image.url }}');
+        background-size: cover;
+        background-position: center;"
+    {% endif %}
+>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-tag">NEC Entrance Portal</div>
+
+            {% if hero_slides and hero_slides.0 %}
+                <h1>{{ hero_slides.0.title }}</h1>
+                <p>{{ hero_slides.0.subtitle }}</p>
+            {% else %}
+                <h1>Empowering Future Architects and Engineers</h1>
+                <p>
+                    Explore admission notices, entrance requirements, scholarships,
+                    and academic programs through a clean and modern dynamic portal.
+                </p>
+            {% endif %}
+
+            <div class="hero-actions">
+                {% if hero_slides and hero_slides.0 and hero_slides.0.button_link %}
+                    <a href="{{ hero_slides.0.button_link }}" class="btn btn-primary">
+                        {% if hero_slides.0.button_text %}{{ hero_slides.0.button_text }}{% else %}Apply Now{% endif %}
+                    </a>
+                {% else %}
+                    <a href="#apply" class="btn btn-primary">Apply Now</a>
+                {% endif %}
+
+                <a href="#programs" class="btn btn-secondary">View Programs</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-box">
+                    <h3>{{ latest_notices|length }}</h3>
+                    <p>Latest Notices</p>
+                </div>
+                <div class="stat-box">
+                    <h3>{{ programs|length }}</h3>
+                    <p>Offered Programs</p>
+                </div>
+                <div class="stat-box">
+                    <h3>{{ scholarships|length }}</h3>
+                    <p>Scholarships</p>
+                </div>
+                <div class="stat-box">
+                    <h3>{{ requirements|length }}</h3>
+                    <p>Requirements</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>       
+
+<section class="section section-soft" id="highlights">
+    <div class="container">
+        <div class="section-title-wrap">
+            <div class="section-kicker">Why Choose NEC</div>
+            <h2 class="section-title">Admission Highlights</h2>
+            <p class="section-subtitle">
+                Present your entrance information in a professional and easy-to-navigate structure.
+            </p>
+        </div>
+
+        <div class="highlight-grid">
+            <div class="highlight-box">
+                <div class="highlight-icon">N</div>
+                <h3>Latest Notices</h3>
+                <p>All admission updates and announcements can be managed dynamically from the admin panel.</p>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-icon">P</div>
+                <h3>Program Details</h3>
+                <p>Show complete information about every academic program with seats, duration, and eligibility.</p>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-icon">S</div>
+                <h3>Scholarships</h3>
+                <p>Display scholarship opportunities and entrance-related support in a clear and attractive way.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-light" id="notices">
+    <div class="container">
+        <div class="section-title-wrap">
+            <div class="section-kicker">Admission Updates</div>
+            <h2 class="section-title">Latest Admission Notices</h2>
+            <p class="section-subtitle">
+                Keep students informed with the most recent notices, schedules, and admission announcements.
+            </p>
+        </div>
+
+        <div class="cards-2">
+            <div class="card">
+                <h3 class="card-title">Recent Notices</h3>
+
+                {% for notice in latest_notices %}
+                    <div class="notice-item">
+                        <div class="notice-date">{{ notice.published_date }}</div>
+
+                        <div class="notice-title">
+                            <a href="{% url 'notice_detail' notice.slug %}">
+                                {{ notice.title }}
+                            </a>
+                        </div>
+
+                        {% if notice.description %}
+                            <div class="notice-desc">
+                                {{ notice.description|truncatewords:24 }}
+                            </div>
+                        {% endif %}
+
+                        <div class="notice-actions">
+                            
+                            <a href="{% url 'notice_detail' notice.slug %}" class="btn-small btn-blue">View Details</a>
+                            {% if notice.file %}
+                                <a href="{{ notice.file.url }}" class="btn-small btn-gold">Download</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No notices available yet.</p>
+                {% endfor %}
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Entrance Requirements</h3>
+
+                <ul class="requirements-list">
+                    {% for item in requirements %}
+                        <li>
+                            <strong>{{ item.title }}</strong>
+                            <span>{{ item.description }}</span>
+                        </li>
+                    {% empty %}
+                        <li>
+                            <strong>No requirements added</strong>
+                            <span>Requirement data will appear here after adding from admin panel.</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-soft" id="scholarships">
+    <div class="container">
+        <div class="section-title-wrap">
+            <div class="section-kicker">Support Opportunities</div>
+            <h2 class="section-title">Scholarships Provided</h2>
+            <p class="section-subtitle">
+                Highlight scholarship options for deserving and eligible students.
+            </p>
+        </div>
+
+        <div class="scholarship-grid">
+            {% for item in scholarships %}
+                <div class="card scholarship-card">
+                    <h3>Scholarship Opportunity</h3>
+                    <p>{{ item.title }}</p>
+                </div>
+            {% empty %}
+                <div class="card scholarship-card">
+                    <h3>No Scholarship Data</h3>
+                    <p>Scholarship information has not been added yet.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section section-light" id="programs">
+    <div class="container">
+        <div class="section-title-wrap">
+            <div class="section-kicker">Academic Programs</div>
+            <h2 class="section-title">Offered Programs</h2>
+            <p class="section-subtitle">
+                Nepal Engineering College offers diverse programs in engineering,
+                architecture and allied technical disciplines.
+            </p>
+        </div>
+
+        <div class="program-grid">
+            {% for program in programs %}
+                <div class="card program-card">
+
+                    <div class="program-image">
+                        {% if program.image %}
+                            <img src="{{ program.image.url }}" alt="{{ program.name }}">
+                        {% else %}
+                            <div style="width:100%; height:100%; background:linear-gradient(135deg,#dbe6ff,#aec8ff);"></div>
+                        {% endif %}
+                    </div>
+
+                    <div class="program-body">
+                        <h3>
+                            <a href="{% url 'program_detail' program.slug %}">
+                                {{ program.name }}
+                            </a>
+                        </h3>
+
+                        <p>{{ program.short_description|truncatewords:20 }}</p>
+
+                        <div class="program-meta">
+                            <div>
+                                <strong>Seats</strong>
+                                <span>{{ program.seats }}</span>
+                            </div>
+
+                            <div>
+                                <strong>Shift</strong>
+                                <span>{{ program.shift }}</span>
+                            </div>
+
+                            <div>
+                                <strong>Duration</strong>
+                                <span>{{ program.duration }}</span>
+                            </div>
+                        </div>
+
+                        <div class="program-action">
+                            <a href="{% url 'program_detail' program.slug %}" class="btn-small btn-blue">
+                                View Program
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            {% empty %}
+                <div class="card">
+                    <h3>No Programs Added</h3>
+                    <p>Program information will be displayed here once added from admin panel.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section" id="program-details">
+    <div class="container">
+        <div class="section-title-wrap">
+            <div class="section-kicker">Program Details</div>
+            <h2 class="section-title">Explore Detailed Academic Information</h2>
+            <p class="section-subtitle">
+                Each program can have its own dedicated detail page with eligibility,
+                overview, career scope, curriculum and other important academic information.
+            </p>
+        </div>
+
+        <div class="highlight-grid">
+            {% for program in programs %}
+                <div class="highlight-box">
+                    <div class="highlight-icon">{{ forloop.counter }}</div>
+                    <h3>{{ program.name }}</h3>
+                    <p>{{ program.short_description|truncatewords:16 }}</p>
+                    <div style="margin-top:16px;">
+                        <a href="{% url 'program_detail' program.slug %}" class="btn-small btn-blue">Open Details</a>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="highlight-box">
+                    <div class="highlight-icon">i</div>
+                    <h3>No Details Available</h3>
+                    <p>Add programs from admin to display detailed academic sections here.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="section section-light" id="downloads-preview">
+    <div class="container">
+        <div class="section-title-wrap">
+            <div class="section-kicker">Downloads / Other Links</div>
+            <h2 class="section-title">Important Downloads</h2>
+            <p class="section-subtitle">
+                Access admission forms, fee structures, notices, syllabi and other important documents.
+            </p>
+        </div>
+
+        <div class="home-downloads-grid">
+            {% for item in home_downloads %}
+                <div class="home-download-card">
+                    <div class="home-download-left">
+                        <div class="home-download-icon">📄</div>
+                        <div>
+                            <h3>{{ item.title }}</h3>
+                            <p>{{ item.description|truncatewords:14 }}</p>
+                        </div>
+                    </div>
+
+                    <div class="home-download-actions">
+                        <a href="{{ item.file.url }}" target="_blank" class="btn-small btn-blue">
+                            Download
+                        </a>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="card">
+                    <p>No downloads available yet.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div style="text-align:center; margin-top:30px;">
+            <a href="{% url 'downloads' %}" class="btn btn-primary">View All Downloads</a>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

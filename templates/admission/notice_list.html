@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section section-light">
+    <div class="container">
+        <div class="section-title-wrap">
+            <div class="section-kicker">All Notices</div>
+            <h2 class="section-title">Admission Notices</h2>
+            <p class="section-subtitle">
+                All published admission notices are listed below.
+            </p>
+        </div>
+
+        <div class="card">
+            {% for notice in notices %}
+                <div class="notice-item">
+                    <div class="notice-date">{{ notice.published_date }}</div>
+
+                    <div class="notice-title">
+                        <a href="{% url 'notice_detail' notice.slug %}">
+                            {{ notice.title }}
+                        </a>
+                    </div>
+
+                    {% if notice.description %}
+                        <div class="notice-desc">
+                            {{ notice.description|truncatewords:25 }}
+                        </div>
+                    {% endif %}
+
+                    <div class="notice-actions">
+                        <a href="{% url 'notice_detail' notice.slug %}" class="btn-small btn-blue">
+                            View Details
+                        </a>
+
+                        {% if notice.file %}
+                            <a href="{{ notice.file.url }}" class="btn-small btn-gold" target="_blank">
+                                Download
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% empty %}
+                <p>No notices available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

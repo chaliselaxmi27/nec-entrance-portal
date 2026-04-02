@@ -1,0 +1,61 @@
+<footer class="nec-footer">
+    <div class="container footer-top-grid">
+        <div class="footer-col">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    {% if site.logo %}
+                        <img src="{{ site.logo.url }}" alt="{{ site.college_name }}">
+                    {% else %}
+                        <span>NEC</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <h3>{% if site.college_name %}{{ site.college_name }}{% else %}Nepal Engineering College{% endif %}</h3>
+                    <p>Affiliated to Pokhara University</p>
+                </div>
+            </div>
+
+            <p class="footer-desc">
+                Dynamic entrance portal for notices, requirements, scholarships, downloads and offered programs.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#notices">Notices</a></li>
+                <li><a href="#downloads">Downloads</a></li>
+                <li><a href="#programs">Offered Programs</a></li>
+                <li><a href="#program-details">Programs Details</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+                <li>Phone: {% if site.phone %}{{ site.phone }}{% else %}+977-01-5221006{% endif %}</li>
+                <li>Email: {% if site.email %}{{ site.email }}{% else %}info@nec.edu.np{% endif %}</li>
+                <li>{% if site.address %}{{ site.address }}{% else %}Bhaktapur, Nepal{% endif %}</li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Portal Access</h4>
+            <ul>
+                <li><a href="/admin/">Admin Login</a></li>
+                <li><a href="#">Enquiry</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">YouTube</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-row">
+            <p>© {% now "Y" %} {% if site.college_name %}{{ site.college_name }}{% else %}Nepal Engineering College{% endif %}. All Rights Reserved.</p>
+            <p>Entrance Portal</p>
+        </div>
+    </div>
+</footer>

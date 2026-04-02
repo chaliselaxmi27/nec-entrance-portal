@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="card" style="max-width:1000px; margin:0 auto;">
+            <p style="margin-bottom:10px;">
+                <a href="/" style="color:#0b3d91; font-weight:bold;">← Back to Home</a>
+            </p>
+
+            {% if program.image %}
+                <img src="{{ program.image.url }}" alt="{{ program.name }}" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; margin-bottom:20px;">
+            {% endif %}
+
+            <h1 style="color:#0b3d91; margin-bottom:12px;">{{ program.name }}</h1>
+
+            <p style="font-size:17px; color:#444; margin-bottom:20px;">
+                {{ program.short_description }}
+            </p>
+
+            <div class="program-meta" style="margin-bottom:25px; font-size:16px;">
+                <p><strong>Seats:</strong> {{ program.seats }}</p>
+                <p><strong>Shift:</strong> {{ program.shift }}</p>
+                <p><strong>Duration:</strong> {{ program.duration }}</p>
+            </div>
+
+            <hr style="margin:25px 0; border:none; border-top:1px solid #e5e5e5;">
+
+            <h2 style="color:#0b3d91; margin-bottom:16px;">Program Details</h2>
+
+            {% for detail in program.details.all %}
+                <div style="margin-bottom:20px;">
+                    <h3 style="margin-bottom:8px;">{{ detail.section_title }}</h3>
+                    <p style="color:#555; line-height:1.8;">{{ detail.content|linebreaks }}</p>
+                </div>
+            {% empty %}
+                <p>No detailed content added yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

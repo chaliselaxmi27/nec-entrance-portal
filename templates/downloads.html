@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section section-light">
+<div class="container">
+
+<div class="downloads-grid">
+
+{% for item in downloads %}
+
+<div class="download-card">
+
+<div class="download-left">
+
+<div class="download-icon">
+📄
+</div>
+
+<div>
+
+<h3 class="download-title">
+{{ item.title }}
+</h3>
+
+<p class="download-desc">
+{{ item.description }}
+</p>
+
+</div>
+
+</div>
+
+<a href="{{ item.file.url }}" target="_blank" class="download-btn">
+Download
+</a>
+
+</div>
+
+{% empty %}
+
+<p>No downloads available.</p>
+
+{% endfor %}
+
+</div>
+
+</div>
+</section>
+{% endblock %}
