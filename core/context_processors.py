@@ -1,7 +1,8 @@
+from core.models import SiteSetting
 from admission.models import Notice
 
-def latest_notices(request):
-    notices = Notice.objects.order_by('-published_date')[:8]
+def global_site_data(request):
     return {
-        'latest_notices': notices
+        "site": SiteSetting.objects.last(),
+        "latest_notices": Notice.objects.all()[:10],
     }

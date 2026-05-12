@@ -34,20 +34,24 @@ class Program(models.Model):
 
     def __str__(self):
         return self.name
-
-
 class ProgramDetail(models.Model):
+    program = models.OneToOneField(Program, on_delete=models.CASCADE, related_name="detail")
+    page_title = models.CharField(max_length=255)
+    intro = models.TextField(blank=True)
 
-    program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name="details")
+    section1_title = models.CharField(max_length=255, blank=True)
+    section1_content = models.TextField(blank=True)
 
-    section_title = models.CharField(max_length=255)
+    section2_title = models.CharField(max_length=255, blank=True)
+    section2_content = models.TextField(blank=True)
 
-    content = models.TextField()
+    section3_title = models.CharField(max_length=255, blank=True)
+    section3_content = models.TextField(blank=True)
 
-    order = models.PositiveIntegerField(default=0)
-
-    class Meta:
-        ordering = ['order']
+    media_file = models.FileField(upload_to="program_detail_media/", blank=True, null=True)
+    revised_year = models.CharField(max_length=100, blank=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.program.name} - {self.section_title}"
+        return self.page_title
+

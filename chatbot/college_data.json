@@ -1,0 +1,19 @@
+{
+  "general": {
+    "greeting": "Hello! Welcome to NEC Admission Assistant.",
+    "phone": "+977-01-5221006",
+    "email": "info@nec.edu.np"
+  },
+  "admission": {
+    "process": "Fill admission form and submit documents.",
+    "documents": "SEE, +2, citizenship, photos required."
+  },
+  "scholarship": {
+    "info": "Scholarships available based on entrance exam."
+  },
+  "notices": [
+    "Admission Open 2025",
+    "Entrance Result Published",
+    "Scholarship Notice"
+  ]
+}

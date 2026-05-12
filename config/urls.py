@@ -8,6 +8,7 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('', include('admission.urls')),
     path('', include('programs.urls')),
+    path("chatbot/", include("chatbot.urls")),
 ]
 
 if settings.DEBUG:

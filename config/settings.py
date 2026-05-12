@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-baz%*hm9gy2txlyvm%nv&ijzf40*(f*se=+l92$d&e_)3+ei11
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'admission',
     'programs',
     'pages',
+    'chatbot',
 ]
 
 MIDDLEWARE = [
@@ -68,7 +69,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'core.context_processors.latest_notices',
+                'core.context_processors.global_site_data',
+                
             ],
         },
     },

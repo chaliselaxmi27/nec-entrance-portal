@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section section-light">
+    <div class="container">
+
+        <div class="section-title-wrap" style="margin-bottom:24px;">
+            <div class="section-kicker">PROGRAM DETAILS</div>
+            <h2 class="section-title">Bachelors Programs Details</h2>
+        </div>
+
+        <div class="program-tabs-bar">
+            {% for program in programs %}
+                <a href="{% url 'program_details_tabs_slug' program.slug %}"
+                   class="program-tab-link {% if active_program and active_program.id == program.id %}active{% endif %}">
+                    {{ program.name }}
+                </a>
+            {% endfor %}
+        </div>
+
+        {% if active_program and active_detail %}
+        <div class="program-tabs-content-wrap">
+            <div class="program-tabs-content">
+
+                <div class="program-tabs-left">
+                    <h1>{{ active_detail.page_title|default:active_program.name }}</h1>
+
+                    {% if active_detail.intro %}
+                        <p class="program-intro">{{ active_detail.intro }}</p>
+                    {% endif %}
+
+                    {% if active_detail.section1_title %}
+                        <h3>{{ active_detail.section1_title }}</h3>
+                    {% endif %}
+                    {% if active_detail.section1_content %}
+                        <div class="program-rich-text">
+                            {{ active_detail.section1_content|linebreaks }}
+                        </div>
+                    {% endif %}
+
+                    {% if active_detail.section2_title %}
+                        <h3>{{ active_detail.section2_title }}</h3>
+                    {% endif %}
+                    {% if active_detail.section2_content %}
+                        <div class="program-rich-text">
+                            {{ active_detail.section2_content|linebreaks }}
+                        </div>
+                    {% endif %}
+
+                    {% if active_detail.section3_title %}
+                        <h3>{{ active_detail.section3_title }}</h3>
+                    {% endif %}
+                    {% if active_detail.section3_content %}
+                        <div class="program-rich-text">
+                            {{ active_detail.section3_content|linebreaks }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="program-tabs-right">
+                    {% if active_detail.media_file %}
+                        {% with file_url=active_detail.media_file.url %}
+                            {% if ".mp4" in file_url or ".webm" in file_url or ".ogg" in file_url %}
+                                <div class="program-media-box">
+                                    <video controls width="100%">
+                                        <source src="{{ active_detail.media_file.url }}">
+                                    </video>
+                                </div>
+                            {% else %}
+                                <div class="program-media-box">
+                                    <img src="{{ active_detail.media_file.url }}" alt="{{ active_program.name }}">
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                    {% elif active_program.image %}
+                        <div class="program-media-box">
+                            <img src="{{ active_program.image.url }}" alt="{{ active_program.name }}">
+                        </div>
+                    {% endif %}
+
+                    {% if active_detail.revised_year %}
+                        <div class="course-structure-box">
+                            Course Structure (Revised {{ active_detail.revised_year }})
+                        </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+        {% else %}
+            <div class="card">
+                <p>No program detail available yet.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

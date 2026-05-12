@@ -1,66 +1,76 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<section class="hero-slider-section">
+    <div class="hero-slider" id="heroSlider">
 
-<section
-    class="hero"
-    {% if hero_slides and hero_slides.0 and hero_slides.0.background_image %}
-        style="background:
-        linear-gradient(rgba(8, 31, 78, 0.70), rgba(8, 31, 78, 0.78)),
-        url('{{ hero_slides.0.background_image.url }}');
-        background-size: cover;
-        background-position: center;"
-    {% endif %}
->
-    <div class="container">
-        <div class="hero-content">
-            <div class="hero-tag">NEC Entrance Portal</div>
+        {% for slide in hero_slides %}
+            <div class="hero-slide {% if forloop.first %}active{% endif %}"
+                 style="background:
+                 linear-gradient(rgba(8,31,78,0.45), rgba(8,31,78,0.45)),
+                 url('{% if slide.background_image %}{{ slide.background_image.url }}{% endif %}');
+                 background-size: cover;
+                 background-position: center;">
 
-            {% if hero_slides and hero_slides.0 %}
-                <h1>{{ hero_slides.0.title }}</h1>
-                <p>{{ hero_slides.0.subtitle }}</p>
-            {% else %}
-                <h1>Empowering Future Architects and Engineers</h1>
-                <p>
-                    Explore admission notices, entrance requirements, scholarships,
-                    and academic programs through a clean and modern dynamic portal.
-                </p>
-            {% endif %}
+                <div class="container">
+                    <div class="hero-slide-content">
+                        <div class="hero-tag">NEC Entrance Portal</div>
 
-            <div class="hero-actions">
-                {% if hero_slides and hero_slides.0 and hero_slides.0.button_link %}
-                    <a href="{{ hero_slides.0.button_link }}" class="btn btn-primary">
-                        {% if hero_slides.0.button_text %}{{ hero_slides.0.button_text }}{% else %}Apply Now{% endif %}
-                    </a>
-                {% else %}
-                    <a href="#apply" class="btn btn-primary">Apply Now</a>
-                {% endif %}
+                        <h1>{{ slide.title }}</h1>
 
-                <a href="#programs" class="btn btn-secondary">View Programs</a>
-            </div>
+                        {% if slide.subtitle %}
+                            <p>{{ slide.subtitle }}</p>
+                        {% endif %}
 
-            <div class="hero-stats">
-                <div class="stat-box">
-                    <h3>{{ latest_notices|length }}</h3>
-                    <p>Latest Notices</p>
-                </div>
-                <div class="stat-box">
-                    <h3>{{ programs|length }}</h3>
-                    <p>Offered Programs</p>
-                </div>
-                <div class="stat-box">
-                    <h3>{{ scholarships|length }}</h3>
-                    <p>Scholarships</p>
-                </div>
-                <div class="stat-box">
-                    <h3>{{ requirements|length }}</h3>
-                    <p>Requirements</p>
+                        <div class="hero-actions">
+                            {% if slide.button_text and slide.button_link %}
+                                <a href="{{ slide.button_link }}" class="btn btn-primary">
+                                    {{ slide.button_text }}
+                                </a>
+                            {% else %}
+                                <a href="https://emis.nec.edu.np/enquiry" class="btn btn-primary">Enquiry Now</a>
+                            {% endif %}
+
+                            <a href="/#programs" class="btn btn-secondary">View Programs</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+        {% empty %}
+            <div class="hero-slide active"
+                 style="background:
+                 linear-gradient(rgba(8,31,78,0.45), rgba(8,31,78,0.45)),
+                 url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80');
+                 background-size: cover;
+                 background-position: center;">
+
+                <div class="container">
+                    <div class="hero-slide-content">
+                        <div class="hero-tag">NEC Entrance Portal</div>
+                        <h1>Empowering Future Architects and Engineers</h1>
+                        <p>Dynamic entrance information system for notices, programs, scholarships and downloads.</p>
+
+                        <div class="hero-actions">
+                            <a href="/#apply" class="btn btn-primary">Apply Now</a>
+                            <a href="/#programs" class="btn btn-secondary">View Programs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <button class="hero-arrow hero-arrow-prev" onclick="moveHeroSlide(-1)">&#10094;</button>
+        <button class="hero-arrow hero-arrow-next" onclick="moveHeroSlide(1)">&#10095;</button>
+
+        <div class="hero-dots" id="heroDots">
+            {% for slide in hero_slides %}
+                <span class="hero-dot {% if forloop.first %}active{% endif %}" onclick="goToHeroSlide({{ forloop.counter0 }})"></span>
+            {% empty %}
+                <span class="hero-dot active"></span>
+            {% endfor %}
         </div>
     </div>
-
-</section>       
+</section>
 
 <section class="section section-soft" id="highlights">
     <div class="container">
@@ -209,7 +219,7 @@
 
                     <div class="program-body">
                         <h3>
-                            <a href="{% url 'program_detail' program.slug %}">
+                            <a href="{% url 'program_details_tabs_slug' program.slug %}">
                                 {{ program.name }}
                             </a>
                         </h3>
@@ -234,7 +244,7 @@
                         </div>
 
                         <div class="program-action">
-                            <a href="{% url 'program_detail' program.slug %}" class="btn-small btn-blue">
+                            <a href="{% url 'program_details_tabs_slug' program.slug %}" class="btn-small btn-blue">
                                 View Program
                             </a>
                         </div>
@@ -250,36 +260,101 @@
         </div>
     </div>
 </section>
-
-<section class="section" id="program-details">
+<section class="section section-light" id="program-details">
     <div class="container">
-        <div class="section-title-wrap">
-            <div class="section-kicker">Program Details</div>
-            <h2 class="section-title">Explore Detailed Academic Information</h2>
+
+        <div class="section-title-wrap" style="margin-bottom:24px;">
+            <div class="section-kicker">PROGRAM DETAILS</div>
+            <h2 class="section-title">Bachelors Programs Details</h2>
             <p class="section-subtitle">
-                Each program can have its own dedicated detail page with eligibility,
-                overview, career scope, curriculum and other important academic information.
+                Explore detailed academic information for each available program.
             </p>
         </div>
 
-        <div class="highlight-grid">
+        <div class="program-tabs-bar">
             {% for program in programs %}
-                <div class="highlight-box">
-                    <div class="highlight-icon">{{ forloop.counter }}</div>
-                    <h3>{{ program.name }}</h3>
-                    <p>{{ program.short_description|truncatewords:16 }}</p>
-                    <div style="margin-top:16px;">
-                        <a href="{% url 'program_detail' program.slug %}" class="btn-small btn-blue">Open Details</a>
-                    </div>
-                </div>
-            {% empty %}
-                <div class="highlight-box">
-                    <div class="highlight-icon">i</div>
-                    <h3>No Details Available</h3>
-                    <p>Add programs from admin to display detailed academic sections here.</p>
-                </div>
+                <a href="/?program={{ program.slug }}#program-details"
+                   class="program-tab-link {% if active_program and active_program.id == program.id %}active{% endif %}">
+                    {{ program.name }}
+                </a>
             {% endfor %}
         </div>
+
+        {% if active_program and active_detail %}
+        <div class="program-tabs-content-wrap">
+            <div class="program-tabs-content">
+
+                <div class="program-tabs-left">
+                    <h1>{{ active_detail.page_title|default:active_program.name }}</h1>
+
+                    {% if active_detail.intro %}
+                        <p class="program-intro">{{ active_detail.intro }}</p>
+                    {% endif %}
+
+                    {% if active_detail.section1_title %}
+                        <h3>{{ active_detail.section1_title }}</h3>
+                    {% endif %}
+                    {% if active_detail.section1_content %}
+                        <div class="program-rich-text">
+                            {{ active_detail.section1_content|linebreaks }}
+                        </div>
+                    {% endif %}
+
+                    {% if active_detail.section2_title %}
+                        <h3>{{ active_detail.section2_title }}</h3>
+                    {% endif %}
+                    {% if active_detail.section2_content %}
+                        <div class="program-rich-text">
+                            {{ active_detail.section2_content|linebreaks }}
+                        </div>
+                    {% endif %}
+
+                    {% if active_detail.section3_title %}
+                        <h3>{{ active_detail.section3_title }}</h3>
+                    {% endif %}
+                    {% if active_detail.section3_content %}
+                        <div class="program-rich-text">
+                            {{ active_detail.section3_content|linebreaks }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="program-tabs-right">
+                    {% if active_detail.media_file %}
+                        {% with file_url=active_detail.media_file.url %}
+                            {% if ".mp4" in file_url or ".webm" in file_url or ".ogg" in file_url %}
+                                <div class="program-media-box">
+                                    <video controls width="100%">
+                                        <source src="{{ active_detail.media_file.url }}">
+                                    </video>
+                                </div>
+                            {% else %}
+                                <div class="program-media-box">
+                                    <img src="{{ active_detail.media_file.url }}" alt="{{ active_program.name }}">
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                    {% elif active_program.image %}
+                        <div class="program-media-box">
+                            <img src="{{ active_program.image.url }}" alt="{{ active_program.name }}">
+                        </div>
+                    {% endif %}
+
+                    {% if active_detail.revised_year %}
+                        <div class="course-structure-box">
+                            Course Structure (Revised {{ active_detail.revised_year }})
+                        </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+        {% else %}
+            <div class="card">
+                <p>No program detail available yet.</p>
+            </div>
+        {% endif %}
+
     </div>
 </section>
 <section class="section section-light" id="downloads-preview">

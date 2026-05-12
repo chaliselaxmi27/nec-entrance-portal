@@ -36,3 +36,20 @@ class Download(models.Model):
 
     def __str__(self):
         return self.title
+class PopupNotice(models.Model):
+    title = models.CharField(max_length=255)
+    message = models.TextField(blank=True)
+    image = models.ImageField(upload_to="popup/", blank=True, null=True)
+    button_text = models.CharField(max_length=100, blank=True)
+    button_link = models.CharField(max_length=255, blank=True)
+    is_active = models.BooleanField(default=False)
+    order = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["order", "-created_at"]
+
+    def __str__(self):
+        return self.title
+    
+    
