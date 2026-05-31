@@ -1,11 +1,15 @@
 <div class="topbar">
-    <div class="container topbar-container">
+    <div class="topbar-container">
         <div class="topbar-left">
             <div class="top-contact">
-                <span>        <i class="fas fa-phone-alt"></i>
-{% if site.phone %}{{ site.phone }}{% else %}+977-01-5221006{% endif %}</span>
-                <span>        <i class="fas fa-envelope"></i>
-{% if site.email %}{{ site.email }}{% else %}info@nec.edu.np{% endif %}</span>
+                <span>        
+                    <i class="fas fa-phone-alt"></i>
+                     {% if site.phone %}{{ site.phone }}{% else %}+977-01-5221006{% endif %}
+                    </span>
+                <span>        
+                    <i class="fas fa-envelope"></i>
+                     {% if site.email %}{{ site.email }}{% else %}info@nec.edu.np{% endif %}
+                    </span>
             </div>
         </div>
 
@@ -18,6 +22,9 @@
             <a href="#">Faculty</a>
             <a href="#">Alumni</a>
             <a href="#">Contact Us</a>
+            <a href="https://emis.nec.edu.np" class="emis-login-btn" target="_blank">EMIS Login </a>  
+                                                                                                                                                                                                                                                                                                                                   
+
             {% if request.user.is_authenticated %}
     <form action="/admin/logout/" method="post" style="display:inline;">
         {% csrf_token %}
