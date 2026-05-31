@@ -90,6 +90,45 @@ function sendMessage() {
 
     input.value = "";
 }
+ document.addEventListener("DOMContentLoaded", function () {
+    const counters = document.querySelectorAll(".counter");
+
+    if (!counters.length) return;
+
+    const runCounter = (counter) => {
+        const target = Number(counter.getAttribute("data-target"));
+        let current = 0;
+        const duration = 2500;
+        const stepTime = 20;
+        const increment = target / (duration / stepTime);
+
+        const timer = setInterval(() => {
+            current += increment;
+
+            if (current >= target) {
+                counter.innerText = target;
+                clearInterval(timer);
+            } else {
+                counter.innerText = Math.floor(current);
+            }
+        }, stepTime);
+    };
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                runCounter(entry.target);
+                obs.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+
+    counters.forEach((counter) => {
+        observer.observe(counter);
+    });
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     const slides = getHeroSlides();
