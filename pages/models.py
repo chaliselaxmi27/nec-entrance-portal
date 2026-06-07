@@ -15,6 +15,7 @@ class Download(models.Model):
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default="other")
     description = models.TextField(blank=True)
     file = models.FileField(upload_to="downloads/")
+    external_link = models.URLField(blank=True, null=True)
     order = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)

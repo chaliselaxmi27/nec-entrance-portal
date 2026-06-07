@@ -71,7 +71,10 @@ class Download(models.Model):
     is_active = models.BooleanField(default=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
-
+    external_link = models.URLField(
+    blank=True,
+    null=True
+)
     class Meta:
         ordering = ["order"]
 

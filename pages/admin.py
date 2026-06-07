@@ -2,9 +2,9 @@ from django.contrib import admin
 from .models import Download, PopupNotice
 @admin.register(Download)
 class DownloadAdmin(admin.ModelAdmin):
-    list_display = ("title", "category", "order", "is_active", "created_at")
+    list_display = ("title","external_link", "category", "order", "is_active", "created_at")
     list_filter = ("category", "is_active")
-    search_fields = ("title", "description")
+    search_fields = ("title", "description", "external_link")
     list_editable = ("order", "is_active")
 @admin.register(PopupNotice)
 class PopupNoticeAdmin(admin.ModelAdmin):

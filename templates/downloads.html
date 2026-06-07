@@ -10,29 +10,35 @@
 
 <div class="download-card">
 
-<div class="download-left">
+    <div class="download-left">
 
-<div class="download-icon">
-📄
-</div>
+        <div class="download-icon">
+            📄
+        </div>
 
-<div>
+        <div>
+            <h3 class="download-title">{{ item.title }}</h3>
+<p class="download-desc">{{ item.description }}</p>
 
-<h3 class="download-title">
-{{ item.title }}
-</h3>
+{% if item.external_link %}
+    <p class="direct-link-text">
+        🔗 <a href="{{ item.external_link }}" target="_blank">
+            {{ item.external_link }}
+        </a>
+    </p>
+{% endif %}
 
-<p class="download-desc">
-{{ item.description }}
-</p>
+{% if item.external_link %}
+    <a href="{{ item.external_link }}" target="_blank" class="download-btn">
+        Open Link
+    </a>
+{% elif item.file %}
+    <a href="{{ item.file.url }}" target="_blank" class="download-btn">
+        Download
+    </a>
+{% endif %}
+            
 
-</div>
-
-</div>
-
-<a href="{{ item.file.url }}" target="_blank" class="download-btn">
-Download
-</a>
 
 </div>
 

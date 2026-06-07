@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
+
 
 
 class Program(models.Model):
@@ -37,16 +39,16 @@ class Program(models.Model):
 class ProgramDetail(models.Model):
     program = models.OneToOneField(Program, on_delete=models.CASCADE, related_name="detail")
     page_title = models.CharField(max_length=255)
-    intro = models.TextField(blank=True)
+    intro = RichTextField(blank=True)
 
     section1_title = models.CharField(max_length=255, blank=True)
-    section1_content = models.TextField(blank=True)
+    section1_content = RichTextField(blank=True)
 
     section2_title = models.CharField(max_length=255, blank=True)
-    section2_content = models.TextField(blank=True)
+    section2_content = RichTextField(blank=True)
 
     section3_title = models.CharField(max_length=255, blank=True)
-    section3_content = models.TextField(blank=True)
+    section3_content = RichTextField(blank=True)
 
     media_file = models.FileField(upload_to="program_detail_media/", blank=True, null=True)
     revised_year = models.CharField(max_length=100, blank=True)

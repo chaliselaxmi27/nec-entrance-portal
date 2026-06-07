@@ -1,7 +1,24 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const popup = document.getElementById("dynamicPopup");
+
+    if (popup) {
+        const popupSeen = sessionStorage.getItem("necPopupSeen");
+
+        if (popupSeen === "yes") {
+            popup.style.display = "none";
+        } else {
+            popup.style.display = "flex";
+            sessionStorage.setItem("necPopupSeen", "yes");
+        }
+    }
+});
+
+
 function closePopup() {
     const popup = document.getElementById("dynamicPopup");
     if (popup) {
         popup.style.display = "none";
+        sessionStorage.setItem("necPopupSeen", "yes");
     }
 }
 

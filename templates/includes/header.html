@@ -42,7 +42,7 @@
 </div>
 
 <div class="notice-ticker">
-    <div class="container ticker-container">
+    <div class="ticker-container">
         <div class="ticker-title">NOTICES</div>
 
         <div class="ticker-wrapper">
@@ -54,6 +54,8 @@
                 {% endfor %}
                 {% for notice in latest_notices %}
                     <span class="ticker-item">
+                        <span class="ticker-dot"></span>
+
                         <a href="{% url 'notice_detail' notice.slug %}">{{ notice.title }}</a>
                     </span>
                 {% endfor %}

@@ -383,6 +383,13 @@
                         <div>
                             <h3>{{ item.title }}</h3>
                             <p>{{ item.description|truncatewords:14 }}</p>
+                             {% if item.external_link %}
+                            <p class="direct-link-text">
+                            🔗 <a href="{{ item.external_link }}" target="_blank">
+                          Visit Resource
+                               </a>
+                             </p>
+                            {% endif %}
                         </div>
                     </div>
 
