@@ -22,6 +22,36 @@ function closePopup() {
     }
 }
 
+// popup code ...
+
+function loadProgramTab(btn) {
+    const url = btn.dataset.url;
+    console.log("clicked url:", url);
+
+    if (!url) return;
+
+    document.querySelectorAll(".program-tab-link").forEach(function(item){
+        item.classList.remove("active");
+    });
+
+    btn.classList.add("active");
+
+    fetch(url)
+        .then(res => res.text())
+        .then(html => {
+            const doc = new DOMParser().parseFromString(html, "text/html");
+            const newContent = doc.querySelector("#program-detail-area");
+            const currentContent = document.querySelector("#program-detail-area");
+
+            if (newContent && currentContent) {
+                currentContent.innerHTML = newContent.innerHTML;
+                history.pushState({}, "", url);
+            }
+        });
+}
+
+// hero slider code ...
+
 let currentHeroSlide = 0;
 
 function getHeroSlides() {
@@ -159,26 +189,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    const tabs = document.querySelectorAll("[data-program-tab]");
-    const panels = document.querySelectorAll("[data-program-panel]");
-
-    if (tabs.length && panels.length) {
-        tabs.forEach((tab) => {
-            tab.addEventListener("click", function () {
-                const slug = this.getAttribute("data-program-tab");
-
-                tabs.forEach((t) => t.classList.remove("active"));
-                panels.forEach((p) => p.classList.remove("active"));
-
-                this.classList.add("active");
-
-                const activePanel = document.querySelector(`[data-program-panel="${slug}"]`);
-                if (activePanel) {
-                    activePanel.classList.add("active");
-                }
-            });
-        });
-    }
 
     const chatbotToggle = document.getElementById("chatbotToggle");
     const chatbotBox = document.getElementById("chatbotBox");

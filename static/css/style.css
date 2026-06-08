@@ -837,9 +837,9 @@ a{
 
 /* programs */
 .program-grid{
-    display:grid;
-    grid-template-columns:repeat(4,minmax(0,1fr));
-    gap:24px;
+    display:grid; 
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:25px;
 }
 
 .program-card{
@@ -935,6 +935,10 @@ a{
     font-weight:700;
     font-size:15px;
     border-right:1px solid rgba(255,255,255,0.15);
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    font-family:inherit;
 }
 
 .program-tab-link:hover,
@@ -1724,7 +1728,7 @@ body {
     .program-tabs-left h3 {
         font-size: 20px;
     }
-}
+
 
 /* ---------- Medium mobile / tablet ---------- */
 @media (max-width: 768px) {
@@ -1881,7 +1885,7 @@ body {
         margin-right:25px;
         white-space:nowrap;
     }
-}
+
 
     /* Program cards */
     .program-grid {

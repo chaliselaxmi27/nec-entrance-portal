@@ -281,9 +281,9 @@
 
         <div class="program-tabs-bar">
             {% for program in programs %}
-                <a href="/?program={{ program.slug }}#program-details"
+                <a href="{% url 'program_details_tabs_slug' program.slug %}"
                    class="program-tab-link {% if active_program and active_program.id == program.id %}active{% endif %}">
-                    {{ program.name }}
+                   {{ program.name }}
                 </a>
             {% endfor %}
         </div>
