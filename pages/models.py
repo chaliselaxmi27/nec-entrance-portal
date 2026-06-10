@@ -14,7 +14,7 @@ class Download(models.Model):
     slug = models.SlugField(unique=True, blank=True)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default="other")
     description = models.TextField(blank=True)
-    file = models.FileField(upload_to="downloads/")
+    file = models.FileField(upload_to="downloads/" , blank=True, null=True)
     external_link = models.URLField(blank=True, null=True)
     order = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)

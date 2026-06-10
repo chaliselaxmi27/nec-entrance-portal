@@ -304,13 +304,14 @@ a{
     justify-content:space-between;
     gap:24px;
     padding:18px 0;
-    flex-wrap:wrap;
+    flex-wrap:nowrap;
 }
 
 .brand-area{
     display:flex;
     align-items:center;
     gap:14px;
+    flex-shrink:0;
 }
 
 .brand-logo{
@@ -355,16 +356,18 @@ a{
 .main-nav{
     display:flex;
     align-items:center;
-    gap:26px;
-    flex-wrap:wrap;
+    gap:18px;
+    flex-wrap:nowrap;
+    margin-left:auto;
 }
 
 .main-nav a{
     color:#2f2f2f;
     font-weight:700;
-    font-size:15px;
+    font-size:14px;
     text-transform:uppercase;
     letter-spacing:.2px;
+    white-space:nowrap;
 }
 
 .main-nav a:hover{
@@ -838,7 +841,7 @@ a{
 /* programs */
 .program-grid{
     display:grid; 
-    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-columns:repeat(4,minmax(0,1fr));
     gap:25px;
 }
 

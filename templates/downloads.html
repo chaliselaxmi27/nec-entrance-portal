@@ -28,15 +28,17 @@
     </p>
 {% endif %}
 
-{% if item.external_link %}
-    <a href="{{ item.external_link }}" target="_blank" class="download-btn">
-        Open Link
-    </a>
-{% elif item.file %}
-    <a href="{{ item.file.url }}" target="_blank" class="download-btn">
-        Download
-    </a>
-{% endif %}
+{% if item.file %}
+        <a href="{{ item.file.url }}" target="_blank" class="btn-small btn-blue">
+            Download
+        </a>
+    {% elif item.external_link %}
+        <a href="{{ item.external_link }}" target="_blank" class="btn-small btn-blue">
+            Open Link
+        </a>
+    {% else %}
+        <span class="btn-small btn-blue">No File</span>
+    {% endif %}
             
 
 

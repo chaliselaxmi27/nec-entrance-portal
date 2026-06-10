@@ -14,7 +14,7 @@
 
                 <div class="container">
                     <div class="hero-slide-content">
-                        <div class="hero-tag">NEC Entrance Portal</div>
+                        <div class="hero-tag">nec Entrance Portal</div>
 
                         <h1>{{ slide.title }}</h1>
 
@@ -46,7 +46,7 @@
 
                 <div class="container">
                     <div class="hero-slide-content">
-                        <div class="hero-tag">NEC Entrance Portal</div>
+                        <div class="hero-tag">nec Entrance Portal</div>
                         <h1>Empowering Future Architects and Engineers</h1>
                         <p>Dynamic entrance information system for notices, programs, scholarships and downloads.</p>
 
@@ -162,7 +162,7 @@
                     {% for item in requirements %}
                         <li>
                             <strong>{{ item.title }}</strong>
-                            <span>{{ item.description }}</span>
+                            <span>{{ item.description|safe }}</span>
                         </li>
                     {% empty %}
                         <li>
@@ -268,6 +268,7 @@
         </div>
     </div>
 </section>
+{% comment %}
 <section class="section section-light" id="program-details">
     <div class="container">
 
@@ -365,6 +366,7 @@
 
     </div>
 </section>
+{% endcomment %}
 <section class="section section-light" id="downloads-preview">
     <div class="container">
         <div class="section-title-wrap">
@@ -394,10 +396,18 @@
                     </div>
 
                     <div class="home-download-actions">
-                        <a href="{{ item.file.url }}" target="_blank" class="btn-small btn-blue">
-                            Download
-                        </a>
-                    </div>
+    {% if item.file %}
+        <a href="{{ item.file.url }}" target="_blank" class="btn-small btn-blue">
+            Download
+        </a>
+
+    {% elif item.external_link %}
+        <a href="{{ item.external_link }}" target="_blank" class="btn-small btn-blue">
+            Open Link
+        </a>
+
+    {% endif %}
+</div>
                 </div>
             {% empty %}
                 <div class="card">

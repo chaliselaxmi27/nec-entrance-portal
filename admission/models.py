@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
 
 
 class Notice(models.Model):
@@ -34,7 +35,7 @@ class Requirement(models.Model):
 
     title = models.CharField(max_length=255)
 
-    description = models.TextField()
+    description = RichTextField(blank=True)
 
     order = models.PositiveIntegerField(default=0)
 
@@ -62,7 +63,7 @@ class Download(models.Model):
 
     title = models.CharField(max_length=255)
 
-    file = models.FileField(upload_to="downloads/")
+    file = models.FileField(upload_to="downloads/",blank=True, null=True)
 
     category = models.CharField(max_length=100, default="Important")
 

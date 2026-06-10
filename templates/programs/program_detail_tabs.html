@@ -29,7 +29,7 @@
                         <h1>{{ active_detail.page_title|default:active_program.name }}</h1>
 
                         {% if active_detail.intro %}
-                            <p class="program-intro">{{ active_detail.intro }}</p>
+                            <p class="program-intro">{{ active_detail.intro|safe }}</p>
                         {% endif %}
 
                         {% if active_detail.section1_title %}
@@ -37,7 +37,7 @@
                         {% endif %}
                         {% if active_detail.section1_content %}
                             <div class="program-rich-text">
-                                {{ active_detail.section1_content|linebreaks }}
+                                {{ active_detail.section1_content|safe }}
                             </div>
                         {% endif %}
 
@@ -46,7 +46,7 @@
                         {% endif %}
                         {% if active_detail.section2_content %}
                             <div class="program-rich-text">
-                                {{ active_detail.section2_content|linebreaks }}
+                                {{ active_detail.section2_content|safe }}
                             </div>
                         {% endif %}
 
@@ -55,7 +55,7 @@
                         {% endif %}
                         {% if active_detail.section3_content %}
                             <div class="program-rich-text">
-                                {{ active_detail.section3_content|linebreaks }}
+                                {{ active_detail.section3_content|safe }}
                             </div>
                         {% endif %}
                     </div>
