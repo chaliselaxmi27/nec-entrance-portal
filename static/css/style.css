@@ -356,7 +356,7 @@ a{
 .main-nav{
     display:flex;
     align-items:center;
-    gap:18px;
+    gap:24px;
     flex-wrap:nowrap;
     margin-left:auto;
 }
@@ -364,7 +364,7 @@ a{
 .main-nav a{
     color:#2f2f2f;
     font-weight:700;
-    font-size:14px;
+    font-size:18px;
     text-transform:uppercase;
     letter-spacing:.2px;
     white-space:nowrap;

@@ -103,7 +103,7 @@ function sendMessage() {
     if (!msg) return;
 
     body.innerHTML += `<div class="chat-msg user-msg">${msg}</div>`;
-    body.innerHTML += `<div id="bot-typing"><b>NecBot:</b> Typing...</div>`;
+    body.innerHTML += `<div id="bot-typing"><b>necBot:</b> Typing...</div>`;
     body.scrollTop = body.scrollHeight;
 
     fetch("/chatbot/chat/", {
@@ -123,7 +123,7 @@ function sendMessage() {
         const typing = document.getElementById("bot-typing");
         if (typing) typing.remove();
 
-        body.innerHTML += `<div><b>NecBot:</b> ${data.reply}</div>`;
+        body.innerHTML += `<div><b>necBot:</b> ${data.reply}</div>`;
         body.scrollTop = body.scrollHeight;
     })
     .catch((error) => {
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (slides.length > 1) {
             setInterval(() => {
                 showHeroSlide(currentHeroSlide + 1);
-            }, 5000);
+            }, 2000);
         }
     }
 
