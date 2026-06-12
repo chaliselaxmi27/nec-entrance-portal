@@ -189,8 +189,8 @@
         <div class="scholarship-grid">
             {% for item in scholarships %}
                 <div class="card scholarship-card">
-                    <h3>Scholarship Opportunity</h3>
-                    <p>{{ item.title }}</p>
+                    <h3>{{item.title}}</h3>
+                    <p>{{ item.description}}</p>
                 </div>
             {% empty %}
                 <div class="card scholarship-card">

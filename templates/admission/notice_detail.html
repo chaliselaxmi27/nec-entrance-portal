@@ -18,14 +18,30 @@
             <p style="color: #6b7890; margin-bottom: 24px; font-size: 15px;">
                 Published Date: {{ notice.published_date }}
             </p>
+ {% if notice.file %}
 
-            {% if notice.file %}
-                <div style="margin-bottom: 24px;">
-                    <a href="{{ notice.file.url }}" class="btn-small btn-gold" target="_blank">
-                        Download Notice File
-                    </a>
-                </div>
-            {% endif %}
+                
+                {% if notice.is_pdf %}
+                    <div style="margin: 25px 0;">
+                        <iframe src="{{ notice.file.url }}"
+                                style="width: 100%; height: 850px; border: 1px solid #d7e2ef; border-radius: 10px;">
+                        </iframe>
+                    </div>
+                 {% else %}
+        <div style="margin: 25px 0; text-align: center;">
+            <img src="{{ notice.file.url }}"
+                 alt="{{ notice.title }}"
+                 style="max-width: 100%; height: auto; border-radius: 10px; border: 1px solid #d7e2ef;">
+        </div>
+    {% endif %}
+                 <div class="notice-download-box">
+                <a href="{{ notice.file.url }}" target="_blank" class="download-btn">
+                    Download Notice
+                </a>
+            </div>
+
+        {% endif %}
+            
 
             <div style="color: #42506a; font-size: 16px; line-height: 1.9;">
                 {% if notice.description %}

@@ -132,4 +132,4 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-LOGOUT_REDIRECT_URL = 'https://admission.nec.edu.np'
+LOGOUT_REDIRECT_URL = 'https://entrance.nec.edu.np'

@@ -29,6 +29,13 @@ class Notice(models.Model):
 
     def __str__(self):
         return self.title
+        
+    @property
+    def is_pdf(self):
+        if self.file:
+            return self.file.url.lower().endswith('.pdf')
+        return False
+
 
 
 class Requirement(models.Model):
