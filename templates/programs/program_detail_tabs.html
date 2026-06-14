@@ -14,7 +14,7 @@
                 <button type="button"
                         class="program-tab-link {% if active_program and active_program.id == program.id %}active{% elif not active_program and forloop.first %}active{% endif %}"
                         data-url="{% url 'program_details_tabs_slug' program.slug %}"
-                        onclick="loadProgramTab(this)">"
+                        onclick="loadProgramTab(this)">
                     {{ program.name }}
                 </button>
             {% endfor %}
