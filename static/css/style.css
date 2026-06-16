@@ -1739,8 +1739,7 @@ body {
     .container {
         width: 94%;
     }
-
-    .topbar {
+.topbar {
         font-size: 13px;
     }
 
@@ -1774,11 +1773,6 @@ body {
         width: 30px;
         height: 30px;
     }
-
-    .enquiry-btn {
-        padding: 6px 12px;
-    }
-
     .brand-area {
         width: calc(100% - 42px);
     }
@@ -1830,13 +1824,10 @@ body {
         border-radius: 14px;
     }
 
-    .footer-bottom-row,
-    .topbar-container,
-    .header-container {
-        flex-direction: column;
-        align-items: flex-start;
+    .footer-bottom-row{
+    flex-direction: column;
+    align-items: flex-start;
     }
-
     .nec-footer h3 {
         font-size: 20px;
         margin-bottom: 12px;
@@ -2025,48 +2016,118 @@ body {
     .scholarship-grid,
     .home-downloads-grid,
     .downloads-grid,
-    .program-meta {
-        grid-template-columns: 1fr;
+    .program-meta,
+    .program-grid,
+    .programs-grid,
+    .home-programs-grid,
+    .offered-programs-grid,
+    .program-cards,
+    .program-list {
+        grid-template-columns: 1fr !important;
     }
 
+    /* Topbar mobile fix */
     .topbar {
-        padding: 0;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #0b7898 !important;
+        height: 42px !important;
+        overflow: hidden !important;
     }
 
     .topbar-container {
-        min-height: auto;
-        padding: 8px 0;
-        gap: 8px;
+        width: 100% !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        padding: 0 8px !important;
+
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: nowrap !important;
+        gap: 6px !important;
+    }
+
+    .topbar-left {
+        width: auto !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100% !important;
     }
 
     .top-contact {
-        width: 100%;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
+        width: auto !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
+
+        gap: 5px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+    }
+
+    .top-contact a {
+        font-size: 10px !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+        color: #fff !important;
+        text-decoration: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     .topbar-right {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 10px;
+        width: auto !important;
+        flex: 0 0 auto !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        flex-wrap: nowrap !important;
+
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
     }
 
-    .topbar-right a,
-    .logout-btn {
-        font-size: 11px;
+    /* Mobile मा Apply Now बाहेक अरु topbar-right links hide */
+    .topbar-right a:not(.enquiry-btn):not(.top-apply-btn):not(.apply-btn),
+    .topbar-right .social-link,
+    .topbar-right .logout-btn {
+        display: none !important;
     }
 
-    .enquiry-btn {
-        padding: 5px 10px;
-        font-size: 11px !important;
-    }
+    .enquiry-btn,
+    .top-apply-btn,
+    .apply-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
 
-    .social-link {
-        width: 28px;
-        height: 28px;
-        font-size: 11px;
+        height: 30px !important;
+        padding: 0 10px !important;
+        font-size: 10px !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+        border-radius: 4px !important;
+
+        margin: 0 !important;
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        transform: none !important;
     }
 
     .ticker-title {
@@ -2102,7 +2163,33 @@ body {
     }
 
     .main-nav {
-        margin-top: 14px;
+         display: none !important;
+
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        background: #ffffff !important;
+        padding: 10px 14px !important;
+        margin: 0 !important;
+
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14) !important;
+        z-index: 1001 !important;
+
+        transform: none !important;
+
+    }
+    .main-nav.active {
+        display: flex !important;
     }
 
     .main-nav a {
@@ -2140,8 +2227,9 @@ body {
     .hero-arrow-next {
         right: 10px;
     }
-    .stats-grid{
-        grid-template-columns:repeat(2,1fr);
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .section {
@@ -2159,6 +2247,108 @@ body {
     .home-download-card {
         padding: 18px;
     }
+.notice-detail img,
+.notice-image,
+.notice-file-preview img {
+    margin-top: 12px !important;
+    margin-bottom: 18px !important;
+    border-radius: 8px !important;
+}
+    /* Notice detail mobile fix */
+.notice-detail,
+.notice-detail-card,
+.notice-content,
+.notice-detail-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 18px 14px !important;
+}
+
+.section-light {
+    padding: 22px 0 !important;
+}
+
+.section-light .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    margin: 0 auto !important;
+}
+
+.section-light h1,
+.notice-detail h1,
+.notice-title,
+.notice-detail-title {
+    font-size: 18px !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0 !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    white-space: normal !important;
+    text-align: left !important;
+    margin-bottom: 12px !important;
+}
+
+.section-light p,
+.notice-date,
+.published-date {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+}
+
+.section-light img,
+.notice-detail img,
+.notice-image,
+.notice-file-preview img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: contain !important;
+}
+
+.section-light iframe,
+.notice-pdf iframe {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 520px !important;
+}
+
+    /* Program card mobile fix */
+    .program-card,
+    .home-program-card,
+    .offered-program-card {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .program-card img,
+    .home-program-card img,
+    .offered-program-card img {
+        width: 100% !important;
+        height: 180px !important;
+        object-fit: cover !important;
+    }
+
+    .program-card h3,
+    .home-program-card h3,
+    .offered-program-card h3 {
+        font-size: 20px !important;
+        line-height: 1.25 !important;
+        word-break: normal !important;
+        overflow-wrap: normal !important;
+        white-space: normal !important;
+    }
+
+    .program-card p,
+    .home-program-card p,
+    .offered-program-card p {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        word-break: normal !important;
+        overflow-wrap: break-word !important;
+    }
 
     .program-tabs-left h1 {
         font-size: 24px !important;
@@ -2171,6 +2361,23 @@ body {
     .course-structure-box {
         font-size: 17px;
     }
+.footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+    padding: 36px 14px !important;
+}
+
+.nec-footer {
+    margin-top: 30px !important;
+}
+
+.nec-footer h3 {
+    font-size: 22px !important;
+}
+
+.payment-warning {
+    font-size: 18px !important;
+}
 }
 
 /* ---------- Small mobile ---------- */
@@ -2294,4 +2501,3 @@ body {
         transform: translateY(0) scale(1);
     }
 }
-    
