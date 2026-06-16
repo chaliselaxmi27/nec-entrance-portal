@@ -1872,7 +1872,7 @@ body {
     }
 
     .ticker-track{
-        animation:tickerMove 20s linear infinite;
+        animation:noticeScroll 20s linear infinite;
     }
 
     .ticker-item{
@@ -2263,7 +2263,25 @@ body {
     max-width: 100% !important;
     padding: 18px 14px !important;
 }
+.ticker-track {
+    display: flex !important;
+    align-items: center !important;
+    white-space: nowrap !important;
+    animation: noticeScroll 25s linear infinite !important;
+}
 
+.ticker-item {
+    display: inline-flex !important;
+    align-items: center !important;
+    white-space: nowrap !important;
+}
+
+.ticker-item a {
+    display: inline-block !important;
+    color: #000 !important;
+    text-decoration: none !important;
+    pointer-events: auto !important;
+}
 .section-light {
     padding: 22px 0 !important;
 }
