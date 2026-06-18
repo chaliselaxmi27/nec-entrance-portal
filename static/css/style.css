@@ -305,6 +305,8 @@ a{
     gap:24px;
     padding:18px 0;
     flex-wrap:nowrap;
+    margin: left -18px;
+
 }
 
 .brand-area{
@@ -852,8 +854,18 @@ a{
     flex-direction:column;
     height:100%;
     border-radius:18px;
-}
+    position:relative;
 
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+.program-card:hover{
+    transform:translateY(-12px);
+    box-shadow:0 22px 45px rgba(0, 102, 140, 0.22);
+    border-color:rgba(15, 99, 135, 0.35);
+}
 .program-image{
     width:100%;
     height:220px;
@@ -866,7 +878,13 @@ a{
     height:100%;
     object-fit:cover;
     display:block;
+    transition:transform 0.45s ease;
+
 }
+.program-card:hover .program-image img{
+    transform:scale(1.08);
+}
+
 
 .program-body{
     padding:20px;
@@ -880,6 +898,11 @@ a{
     margin-bottom:10px;
     font-size:18px;
     line-height:1.35;
+    transition:color 0.3s ease;
+
+}
+.program-card:hover .program-body h3{
+    color:var(--nec-blue-dark);
 }
 
 .program-body h3 a:hover{
@@ -906,6 +929,13 @@ a{
     border-radius:10px;
     padding:10px 8px;
     text-align:center;
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+.program-card:hover .program-meta div{
+    background:#eef6fa;
+    transform:translateY(-3px);
 }
 
 .program-meta strong{
@@ -919,6 +949,19 @@ a{
     color:#3b4b68;
     font-size:14px;
     font-weight:700;
+}
+.program-card .btn,
+.program-card a.btn{
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.program-card:hover .btn,
+.program-card:hover a.btn{
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(0, 102, 140, 0.25);
 }
 /* PROGRAM DETAIL TABS PAGE */
 .program-tabs-bar{
@@ -1016,9 +1059,62 @@ a{
 }
 
 .scholarship-card{
+     position:relative;
+    overflow:hidden;
     border-left:5px solid var(--nec-gold);
+
+    opacity:0;
+    transform:translateY(25px);
+    animation: scholarshipFadeUp 0.8s ease forwards;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-left-color 0.35s ease;
+}
+.scholarship-card:nth-child(1){
+    animation-delay:0.1s;
 }
 
+.scholarship-card:nth-child(2){
+    animation-delay:0.25s;
+}
+
+.scholarship-card:nth-child(3){
+    animation-delay:0.4s;
+}
+
+.scholarship-card:nth-child(4){
+    animation-delay:0.55s;
+}
+
+/* hover garda halka mathi uthne */
+.scholarship-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 35px rgba(0, 102, 140, 0.18);
+    border-left-color:#f5c400;
+}
+
+/* shine effect */
+.scholarship-card::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:70%;
+    height:100%;
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.55),
+        transparent
+    );
+    transition:left 0.7s ease;
+}
+
+.scholarship-card:hover::after{
+    left:120%;
+}
 .scholarship-card h3{
     color:var(--nec-blue);
     margin-bottom:10px;
@@ -1028,6 +1124,18 @@ a{
 .scholarship-card p{
     color:var(--nec-muted);
     font-size:15px;
+    line-height:1.7;
+    margin-top:8px;
+}
+@keyframes scholarshipFadeUp{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 /* DYNAMIC POPUP */
 .popup-overlay{
@@ -1415,8 +1523,8 @@ margin-top:50px;
 
 .footer-grid{
 display:grid;
-grid-template-columns:1fr 1fr 1fr;
-gap:40px;
+grid-template-columns:1.1fr 1.1fr 1fr;
+gap:55px;
 padding:50px 0;
 }
 
@@ -1441,7 +1549,11 @@ color:#ffd200 !important;
 
     text-shadow:0 1px 2px rgba(0,0,0,0.3);
 }
-
+.footer-links{
+    justify-self:end;
+    min-width:260px;
+    margin-right:20px;
+}
 .footer-links ul{
 list-style:none;
 padding:0;
@@ -1452,12 +1564,18 @@ margin-bottom:10px;
 }
 
 .footer-links a{
-color:#e6f2f7;
-text-decoration:none;
+ color:#e6f2f7;
+    text-decoration:none;
+    font-size:16px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:color 0.25s ease, transform 0.25s ease;
 }
 
 .footer-links a:hover{
-color:white;
+ color:#ffd200;
+    transform:translateX(5px);
 }
 
 .footer-bottom{
@@ -1732,7 +1850,11 @@ body {
     .program-tabs-left h3 {
         font-size: 20px;
     }
-
+.footer-links{
+        justify-self:start;
+        min-width:100%;
+        margin-right:0;
+    }
 
 /* ---------- Medium mobile / tablet ---------- */
 @media (max-width: 768px) {
@@ -2247,6 +2369,14 @@ body {
     .home-download-card {
         padding: 18px;
     }
+.scholarship-card h3 {
+    font-size: 20px !important;
+}
+
+.scholarship-card p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+}
 .notice-detail img,
 .notice-image,
 .notice-file-preview img {

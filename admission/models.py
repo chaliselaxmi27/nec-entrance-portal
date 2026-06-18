@@ -56,6 +56,8 @@ class Requirement(models.Model):
 class Scholarship(models.Model):
 
     title = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+
 
     order = models.PositiveIntegerField(default=0)
 
