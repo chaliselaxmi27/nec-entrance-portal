@@ -21,18 +21,7 @@
             <a href="http://www.nec.edu.np/nec-CPS" target="_blank" rel="noopener noreferrer" >nec-CPS</a>
             <a href="http://www.nec.edu.np/faculty" target="_blank" rel="noopener noreferrer" >Faculty</a>
             <a href="http://www.nec.edu.np/alumni" target="_blank" rel="noopener noreferrer" >Alumni</a>
-            <a href="http://www.nec.edu.np/contact-us" target="_blank" rel="noopener noreferrer" >Contact Us</a>
-            
-                                                                                                                                                                                                                                                                                                                                   
-
-            {% if request.user.is_authenticated %}
-    <form action="/admin/logout/" method="post" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" class="logout-btn">Logout</button>
-    </form>
-{% else %}
-    <a href="/admin/login/?next=/admin/">Login</a>
-{% endif %}
+            <a href="http://www.nec.edu.np/contact-us" target="_blank" rel="noopener noreferrer" >Contact Us</a>                                                                                                                                                                                                                                                                                                      
             <a href="https://nec.edu.np/register" target="_blank" rel="noopener noreferrer" class="enquiry-btn">Apply Now</a>
             <a href="https://www.facebook.com/neccollege" target="_blank" rel="noopener noreferrer">
     <i class="fab fa-facebook-f"></i>
