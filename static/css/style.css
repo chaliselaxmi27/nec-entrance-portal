@@ -446,6 +446,52 @@ a{
     gap:14px;
     flex-wrap:wrap;
 }
+.entrance-deadline-box {
+    display: inline-block;
+    background: rgba(255, 243, 205, 0.96);
+    border: 2px solid #ffc107;
+    padding: 12px 22px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 18px;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    position: relative;
+    z-index: 5;
+}
+
+.deadline-label {
+    color: #222;
+}
+
+.deadline-date {
+    color: #d60000;
+    font-weight: 900;
+    font-size: 18px;
+}
+
+.blink-date {
+    animation: blinkEffect 1s infinite;
+}
+
+@keyframes blinkEffect {
+    0% { opacity: 1; }
+    50% { opacity: 0.25; }
+    100% { opacity: 1; }
+}
+
+.remaining-days {
+    margin-top: 6px;
+    color: #003366;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.daysLeft {
+    color: #d60000;
+    font-size: 21px;
+}
+
 
 .hero-arrow{
     position:absolute;
@@ -1373,7 +1419,25 @@ a{
     color:var(--nec-muted);
     line-height:1.7;
 }
+.back-btn-wrapper{
+    margin-bottom:20px;
+}
 
+.back-btn{
+    display:inline-block;
+    padding:10px 18px;
+    background:#0d6e9e;
+    color:#fff;
+    text-decoration:none;
+    border-radius:6px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#084f72;
+    color:#fff;
+}
 /* CTA */
 .cta-section{
     background:linear-gradient(135deg, var(--nec-blue), var(--nec-blue-dark));
@@ -1918,7 +1982,22 @@ body {
         flex-direction: column;
         align-items: center;
     }
+    .entrance-deadline-box {
+        display: block;
+        margin: 14px auto 0;
+        padding: 10px 14px;
+        max-width: 90%;
+    }
 
+    .deadline-date {
+        display: block;
+        margin-top: 4px;
+        font-size: 16px;
+    }
+
+    .remaining-days {
+        font-size: 15px;
+    }
     .hero-actions .btn {
         width: min(100%, 280px);
         text-align: center;
@@ -2013,6 +2092,17 @@ body {
 
     .program-card {
         width: 100% !important;
+    }
+    .scholarship-card{
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+    .program-card:active,
+    .scholarship-card:active{
+        transform:translateY(-8px) scale(1.01);
+        box-shadow:0 18px 35px rgba(0, 102, 140, 0.22);
     }
 
     .program-image {

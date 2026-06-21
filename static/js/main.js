@@ -65,6 +65,8 @@ function getHeroDots() {
 function showHeroSlide(index) {
     const slides = getHeroSlides();
     const dots = getHeroDots();
+    updateEntranceDeadline();
+
 
     if (!slides.length) return;
 
@@ -92,6 +94,34 @@ function moveHeroSlide(step) {
 function goToHeroSlide(index) {
     showHeroSlide(index);
 }
+
+   function updateEntranceDeadline() {
+    
+    const deadlineDate = new Date("2026-07-09T23:59:59");
+
+    const today = new Date();
+    const difference = deadlineDate - today;
+    const daysLeft = Math.ceil(difference / (1000 * 60 * 60 * 24));
+
+    const daysLeftElements = document.querySelectorAll(".daysLeft");
+    const remainingBoxes = document.querySelectorAll(".remaining-days");
+
+    if (!daysLeftElements.length) return;
+
+    if (daysLeft > 0) {
+        daysLeftElements.forEach(function(element) {
+            element.innerText = daysLeft;
+        });
+    } else if (daysLeft === 0) {
+        daysLeftElements.forEach(function(element) {
+            element.innerText = "Today";
+        });
+    } else {
+        remainingBoxes.forEach(function(box) {
+            box.innerText = "Deadline has passed";
+        });
+    }
+} 
 
 function sendMessage() {
     const input = document.getElementById("chat-input");
