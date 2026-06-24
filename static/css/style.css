@@ -1074,7 +1074,25 @@ a{
     font-size:16px;
     line-height:1.9;
 }
+.program-rich-text table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    -webkit-overflow-scrolling: touch;
+}
 
+.program-rich-text table tbody {
+    display: table;
+    min-width: 650px;
+}
+
+.program-rich-text th,
+.program-rich-text td {
+    padding: 8px;
+    overflow-wrap: break-word;
+}
 .program-media-box{
     background:#0f6387;
     padding:18px;
@@ -2137,21 +2155,38 @@ body {
         width: 100%;
         text-align: center;
     }
-
-    .program-tabs-content-wrap {
-        padding: 14px !important;
+     .program-tabs-content {
+        grid-template-columns: 1fr !important;
     }
 
-    .program-tabs-left h1 {
-        font-size: 26px !important;
-        line-height: 1.2 !important;
+    .program-tabs-bar {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
     }
 
-    .program-tabs-left h3 {
-        font-size: 18px !important;
+    .program-tab-link {
+        flex: 0 0 auto !important;
+        white-space: nowrap !important;
     }
 
-    .program-intro,
+    .program-tabs-content-wrap,
+    .program-tabs-content,
+    .program-tabs-left,
+    .program-tabs-right {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+
+    .program-rich-text table {
+        display: block !important;
+        overflow-x: auto !important;
+    }
+
+    .program-rich-text table tbody {
+        min-width: 650px !important;
+    }
+
+    
     .program-rich-text p {
         font-size: 15px !important;
         line-height: 1.75 !important;
