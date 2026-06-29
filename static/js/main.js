@@ -272,3 +272,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const scholarshipCards = Array.from(document.querySelectorAll(".scholarship-card"));
+
+    if (!scholarshipCards.length) return;
+
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            const index = scholarshipCards.indexOf(entry.target);
+
+            entry.target.style.setProperty("--delay", `${index * 0.15}s`);
+
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            } else {
+                entry.target.classList.remove("show");
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+
+    scholarshipCards.forEach(function (card) {
+        observer.observe(card);
+    });
+});

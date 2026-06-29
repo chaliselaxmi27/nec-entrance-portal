@@ -53,4 +53,15 @@ class PopupNotice(models.Model):
     def __str__(self):
         return self.title
     
-    
+class QuickLink(models.Model):
+    title = models.CharField(max_length=100)
+    url = models.URLField(blank=True, null=True)
+    file = models.FileField(upload_to="quick_links/", blank=True, null=True)
+    order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["order"]
+
+    def __str__(self):
+        return self.title

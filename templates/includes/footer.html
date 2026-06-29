@@ -52,15 +52,23 @@ Online payments must be done using this form only not via separate apps.
 </i> Quick Links</h3>
 
 <ul>
-
-<li><a href="http://www.nec.edu.np/upload/notices/Notice_2026-06-11_61234.jpg" target="_blank"><i class="fa-solid fa-angle-right"></i> Entrance Application</a></li>
-
-<li><a href="/media/quick_link/model-question.pdf" target="_blank"><i class="fa-solid fa-angle-right"></i> Model Questions</a></li>
-
-<li><a href="/media/quick_link/scholarship.pdf" target="_blank"><i class="fa-solid fa-angle-right"></i> Scholarship</a></li>
-
-<li><a href="https://nec.edu.np/images/files/Prospectus-2025.pdf" target="_blank"><i class="fa-solid fa-angle-right"></i> Prospectus</a></li>
-
+{% for link in quick_links %}
+    <li>
+        {% if link.url %}
+            <a href="{{ link.url }}" target="_blank">
+                <i class="fa-solid fa-angle-right"></i>
+                {{ link.title }}
+            </a>
+        {% elif link.file %}
+            <a href="{{ link.file.url }}" target="_blank">
+                <i class="fa-solid fa-angle-right"></i>
+                {{ link.title }}
+            </a>
+        {% endif %}
+    </li>
+{% empty %}
+    <li>No quick links available.</li>
+{% endfor %}
 </ul>
 
 </div>
