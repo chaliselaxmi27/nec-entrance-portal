@@ -45,7 +45,7 @@
 
             <div style="color: #42506a; font-size: 16px; line-height: 1.9;">
                 {% if notice.description %}
-                    {{ notice.description|linebreaks }}
+                    {{ notice.description|urlize|linebreaksbr }}
                 {% else %}
                     <p>No detailed description available for this notice.</p>
                 {% endif %}

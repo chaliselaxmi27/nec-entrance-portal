@@ -97,7 +97,7 @@ function goToHeroSlide(index) {
 
    function updateEntranceDeadline() {
     
-    const deadlineDate = new Date("2026-07-09T23:59:59");
+    const deadlineDate = new Date("2026-07-09T00:00:00");
 
     const today = new Date();
     const difference = deadlineDate - today;

@@ -154,7 +154,7 @@
 
                         {% if notice.description %}
                             <div class="notice-desc">
-                                {{ notice.description|truncatewords:24 }}
+                                {{ notice.description|urlize|linebreaksbr }}
                             </div>
                         {% endif %}
 
